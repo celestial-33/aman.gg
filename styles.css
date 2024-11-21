@@ -1,0 +1,91 @@
+/* Apply basic styling */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #333; /* Dark background to see the effect clearly */
+}
+
+.border {
+  position: relative;
+  opacity: 100%;
+}
+
+@property --angle{
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.border::after, .border::before{
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+
+.border::before{
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin{
+  from{
+    --angle: 0deg;
+  }
+  to{
+    --angle: 360deg;
+  }
+}
+
+.image {
+  width: 600px;
+  height: 400px;
+  border-radius: 10px;
+}
+
+.text {
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  color: lightpink;
+}
+
+.gif {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.overlay-1, .text-overlay-1, .overlay-2, .text-overlay-2 {
+  position: fixed;
+  z-index: 100;
+}
+
+.overlay-1 {
+  bottom: 0;
+  right: 0;
+}
+
+.text-overlay-1 {
+  bottom: 175px;
+  right: 10px;
+  color: white;
+}
+
+.overlay-2 {
+  top: 0;
+  left: 0;
+}
